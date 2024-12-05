@@ -17,4 +17,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag quay.io/mazarineboelen/alm-workshop:$(date +%s)
     - name: Push Docker image
-      run: docker push --tag quay.io/mazarineboelen/alm-workshop:$(date +%s)
+      run: docker push quay.io/mazarineboelen/alm-workshop:$(date +%s)
