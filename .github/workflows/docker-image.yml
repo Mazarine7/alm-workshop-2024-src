@@ -14,6 +14,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - name: Log in to Quay.io
+      env:
+        QUAY_USERNAME: mazarineboelen+alm_workshop_auth
+        QUAY_PASSWORD: 6IEBA5DNTSG80BYFLB5V1O0G2LZN6F02GOBMZ4BBHDXSQ8K5BT74DXCDQ4UV98MI
+      run: |
+        echo $QUAY_PASSWORD | docker login quay.io -u $QUAY_USERNAME --password-stdin
+    - name: Tag Docker image
+      run: docker tag quay.io/mazarineboelen/alm-workshop:latest quay.io/mazarineboelen/alm-workshop:latest
+
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag quay.io/mazarineboelen/alm-workshop:latest
     - name: Push Docker image
